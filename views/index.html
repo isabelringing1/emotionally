@@ -2,28 +2,30 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 <link rel="stylesheet" type="text/css" href="stylesheets/style.css" />
 <img src="empathee.png" alt="logo" style="margin-left:300px;width:656px;height:192px;">
+<br><br><br>
+
 <form action="/" method="post">
 
   <textarea class= "center" id="message" name="message" type="text" value="" placeholder="Enter text to analyze feelings..."></textarea><br/>
-  <input class= "center-button" type="submit" value="Analyze"/>
+  <input class= "center-button" onclick="seewaiting()" type="submit" value="Analyze"/>
 </form>
-<p style="margin-left:550px; margin-top:50px; font-size: 20px" id="hide"><big> emotions detected...</big> </p>
+<p id="phide"><big> emotions detected...</big> </p>
 
 <div class="container">
   <div class="row">
 
-<div class="col-md-2 col-md-offset-1"> <div id="happy"> </div> <p id="p1">Percentage:</p><p id="label1">Happiness</p> </div>
+<div class="col-md-2 col-md-offset-1"> <div id="happy"> </div> <p id="p1" class-"ptext"></p><p id="label1" class-"ptext">Happiness</p> </div>
 <div class="col-md-2"><div id="sadness"></div>
-<p id="p2"></p><p id="label2">Sadness</p>
+<p id="p2" class-"ptext"></p><p id="label2" class-"ptext">Sadness</p>
 </div>
 <div class="col-md-2"><div id="anger"></div>
-<p id="p3"></p><p id="label3">Anger</p>
+<p id="p3" class-"ptext"></p><p id="label3" class-"ptext">Anger</p>
 </div>
 <div class="col-md-2"><div id="disgust"></div>
-<p id="p4"></p><p id="label4">Disgust</p>
+<p id="p4" class-"ptext"></p><p id="label4" class-"ptext">Disgust</p>
 </div>
 <div class="col-md-2"><div id="fear"></div>
-<p id="p5"></p><p id="label5">Fear</p>
+<p id="p5" class-"ptext"></p><p id="label5" class-"ptext">Fear</p>
 </div>
 </div>
 </div>
@@ -36,24 +38,35 @@
 
 <script>  
 
+
+  var showgraph = <%- JSON.stringify(show) %>;
+  if(showgraph){
+    $(".ptext").show();
+    $("#phide").hide();
+  }
+  else{
+    $("p").hide();
+  }
   var joy = <%- JSON.stringify(joy) %>;
   var sadness = <%- JSON.stringify(sadness) %>;
   var anger = <%- JSON.stringify(anger) %>;
   var disgust = <%- JSON.stringify(disgust) %>;
   var fear = <%- JSON.stringify(fear) %>;
-  var showgraph = <%- JSON.stringify(show) %>;
   var fill_happy = 0;
   var fill_sadness = 0;
   var fill_anger = 0;
   var fill_disgust = 0;
   var fill_fear = 0;
-
-  $("p").hide();
-  if(showgraph){
-    $("p").show();
-
+    document.getElementById("p1").innerHTML=Math.floor(joy*100)+"%";
+    document.getElementById("p2").innerHTML=Math.floor(sadness*100)+"%";
+    document.getElementById("p3").innerHTML=Math.floor(anger*100)+"%";
+    document.getElementById("p4").innerHTML=Math.floor(disgust*100)+"%";
+    document.getElementById("p5").innerHTML=Math.floor(fear*100)+"%";
+  
+  function seewaiting(){
+    $("#phide").show();
+    console.log('success');
   }
-
 
 
     var update = setInterval(function() {

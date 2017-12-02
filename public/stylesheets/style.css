@@ -7,13 +7,20 @@ a {
   color: #ff0000;
 }
 
-#p1{
+
+#phide{
+	margin-left:550px; 
+	margin-top:50px; 
+	font-size: 20px
+} 
+
+#p1, #p2, #p3, #p4, #p5{
 	position: absolute;
 	z-index: 100;
 	margin-top:110px;
-	margin-left: 28px;
+	margin-left: 39px;
+	font-size: 45px;
 }
-
 #label1{
 	position: absolute;
 	z-index: 100;
@@ -48,7 +55,7 @@ a {
 	margin-top: 200px;
     overflow: hidden;
     width: 150px;
-    height: 0;
+    height: 1px;
     background-color: #FFFD7F;
     transform: rotatex(180deg);
     transform-origin: top;
@@ -59,7 +66,7 @@ a {
   margin-top: 200px;
     overflow: hidden;
     width: 150px;
-    height: 0;
+    height: 1px;
     background-color: #6E99F8;
     transform: rotatex(180deg);
     transform-origin: top;
@@ -70,7 +77,7 @@ a {
   margin-top: 200px;
     overflow: hidden;
     width: 150px;
-    height: 0;
+    height: 1px;
     background-color: #EE7198;
     transform: rotatex(180deg);
     transform-origin: top;
@@ -81,7 +88,7 @@ a {
   margin-top: 200px;
     overflow: hidden;
     width: 150px;
-    height: 0;
+    height: 1px;
     background-color: #B1FB7B;
     transform: rotatex(180deg);
     transform-origin: top;
@@ -92,7 +99,7 @@ a {
   margin-top: 200px;
     overflow: hidden;
     width: 150px;
-    height: 0;
+    height: 1px;
     background-color: #B792C8;
     transform: rotatex(180deg);
     transform-origin: top;
