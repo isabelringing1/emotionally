@@ -13,7 +13,8 @@ router.get('/', function(req, res, next) {
 					confident: 0,
 					tentative: 0,
 					agreeableness: 0,
-					show: false
+					show: false,
+					recordedtext: false
 	});
 });
 
@@ -53,7 +54,8 @@ router.post('/', async function(req, res, next) {
 					confident: confident,
 					tentative: tentative,
 					agreeableness: agreeableness,
-					show: true
+					show: true,
+					recordedtext:false
 
 				});
 

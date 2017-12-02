@@ -52,17 +52,22 @@
   var anger = <%- JSON.stringify(anger) %>;
   var disgust = <%- JSON.stringify(disgust) %>;
   var fear = <%- JSON.stringify(fear) %>;
+  var recordedtext = <%- JSON.stringify(recordedtext) %>;
   var fill_happy = 0;
   var fill_sadness = 0;
   var fill_anger = 0;
   var fill_disgust = 0;
   var fill_fear = 0;
-    document.getElementById("p1").innerHTML=Math.floor(joy*100)+"%";
-    document.getElementById("p2").innerHTML=Math.floor(sadness*100)+"%";
-    document.getElementById("p3").innerHTML=Math.floor(anger*100)+"%";
-    document.getElementById("p4").innerHTML=Math.floor(disgust*100)+"%";
-    document.getElementById("p5").innerHTML=Math.floor(fear*100)+"%";
-  
+    document.getElementById("p1").innerHTML=Math.round(joy*100)+"%";
+    document.getElementById("p2").innerHTML=Math.round(sadness*100)+"%";
+    document.getElementById("p3").innerHTML=Math.round(anger*100)+"%";
+    document.getElementById("p4").innerHTML=Math.round(disgust*100)+"%";
+    document.getElementById("p5").innerHTML=Math.round(fear*100)+"%";
+    var text = "testing entering text into text box";
+    if(recordedtext){
+      document.getElementById("message").value=text;
+    }
+
   function seewaiting(){
     $("#phide").show();
     console.log('success');
