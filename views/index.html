@@ -1,5 +1,5 @@
 <html>
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 <link rel="stylesheet" type="text/css" href="stylesheets/style.css" />
 <img src="empathee.png" alt="logo" style="margin-left:300px;width:656px;height:192px;">
 <form action="/" method="post">
@@ -7,13 +7,26 @@
   <textarea class= "center" id="message" name="message" type="text" value="" placeholder="Enter text to analyze feelings..."></textarea><br/>
   <input class= "center-button" type="submit" value="Analyze"/>
 </form>
-<p style="margin-left:550px; margin-top:50px; font-size: 20px"; id = "hide"><big> emotions detected...</big> </p>
-<script>$("hide").hide();</script>
-<div id="happy"></div>
-<div id="sadness"></div>
-<div id="anger"></div>
-<div id="disgust"></div>
-<div id="fear"></div>
+<p style="margin-left:550px; margin-top:50px; font-size: 20px" id="hide"><big> emotions detected...</big> </p>
+
+<div class="container">
+  <div class="row">
+
+<div class="col-md-2 col-md-offset-1"> <div id="happy"> </div> <p id="p1">Percentage:</p><p id="label1">Happiness</p> </div>
+<div class="col-md-2"><div id="sadness"></div>
+<p id="p2"></p><p id="label2">Sadness</p>
+</div>
+<div class="col-md-2"><div id="anger"></div>
+<p id="p3"></p><p id="label3">Anger</p>
+</div>
+<div class="col-md-2"><div id="disgust"></div>
+<p id="p4"></p><p id="label4">Disgust</p>
+</div>
+<div class="col-md-2"><div id="fear"></div>
+<p id="p5"></p><p id="label5">Fear</p>
+</div>
+</div>
+</div>
 
 <script
   src="https://code.jquery.com/jquery-3.2.1.slim.js"
@@ -28,14 +41,20 @@
   var anger = <%- JSON.stringify(anger) %>;
   var disgust = <%- JSON.stringify(disgust) %>;
   var fear = <%- JSON.stringify(fear) %>;
-
+  var showgraph = <%- JSON.stringify(show) %>;
   var fill_happy = 0;
   var fill_sadness = 0;
   var fill_anger = 0;
   var fill_disgust = 0;
   var fill_fear = 0;
 
-  $("p").show(1000);
+  $("p").hide();
+  if(showgraph){
+    $("p").show();
+
+  }
+
+
 
     var update = setInterval(function() {
       fill_happy += 1;

@@ -12,7 +12,8 @@ router.get('/', function(req, res, next) {
 					sadness: 0,
 					confident: 0,
 					tentative: 0,
-					agreeableness: 0
+					agreeableness: 0,
+					show: false
 	});
 });
 
@@ -51,7 +52,8 @@ router.post('/', async function(req, res, next) {
 					sadness: sadness,
 					confident: confident,
 					tentative: tentative,
-					agreeableness: agreeableness
+					agreeableness: agreeableness,
+					show: true
 
 				});
 
