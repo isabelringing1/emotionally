@@ -25,7 +25,7 @@ router.post('/', async function(req, res, next) {
 					var data = JSON.stringify(tone, null, 2);
 					var parsedData = JSON.parse(data);
 					var joy = parsedData.document_tone.tone_categories[0].tones[3].score;
-					
+					console.log(data);
 					res.render('index', {
           				joy: joy,
           				
