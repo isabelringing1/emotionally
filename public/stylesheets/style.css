@@ -7,13 +7,12 @@ a {
   color: #00B7FF;
 }
 
-div{
-	width:100px;
-	height:100px;
-	background-color: yellow;
-    border-radius: 50%;
-    color:black;
-    margin: auto;
-    text-align: center;
-    
+#holdci {
+	margin-top: 200px;
+    overflow: hidden;
+    width: 100px;
+    height: 0;
+    background-color: yellow;
+    transform: rotatex(180deg);
+    transform-origin: top;
 }

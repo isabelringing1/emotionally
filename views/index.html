@@ -6,9 +6,24 @@
   <textarea id="message" name="message" type="text" value="" placeholder="Enter text"></textarea><br/>
   <input type="submit" value="Submit"/>
 </form>
-
-<div>Anger</div>
-
-
+<div id="holdci"></div>
+<script
+  src="https://code.jquery.com/jquery-3.2.1.slim.js"
+  integrity="sha256-tA8y0XqiwnpwmOIl3SGAcFl2RvxHjA8qp0+1uCGmRmg="
+  crossorigin="anonymous"></script>
+<script type="text/javascript" src="javascripts/script.js">
+</script>
+<script>
+  var joy = <%- JSON.stringify(joy) %>;
+      var fill = 0;
+      var update = setInterval(function() {
+        fill += 1;
+        if (fill <= joy*100) {
+            $('#holdci').css('height', (fill+"px")); 
+        } else {
+            clearInterval(update);        
+        }
+    }, 10);
+</script>
 </html>
 

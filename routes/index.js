@@ -4,7 +4,7 @@ var ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-	res.render('index', { title: 'Analyze Text for Emotions' });
+	res.render('index', { joy: 0 });
 });
 
 
@@ -23,7 +23,13 @@ router.post('/', async function(req, res, next) {
 					console.log(err);
 				else
 					var data = JSON.stringify(tone, null, 2);
-					console.log(data);
+					var parsedData = JSON.parse(data);
+					var joy = parsedData.document_tone.tone_categories[0].tones[3].score;
+					
+					res.render('index', {
+          				joy: joy,
+          				
+        });
 
 			});
 		
