@@ -3,10 +3,13 @@
 <link rel="stylesheet" type="text/css" href="stylesheets/style.css" />
 
 <form action="/" method="post">
-  <textarea id="message" name="message" type="text" value="" placeholder="Enter text"></textarea><br/>
+  <textarea id="message" name="message" type="text" placeholder="Enter text to analyze"></textarea><br/>
   <input type="submit" value="Submit"/>
 </form>
 <div id="holdci"></div>
+
+
+
 <script
   src="https://code.jquery.com/jquery-3.2.1.slim.js"
   integrity="sha256-tA8y0XqiwnpwmOIl3SGAcFl2RvxHjA8qp0+1uCGmRmg="
@@ -14,7 +17,24 @@
 <script type="text/javascript" src="javascripts/script.js">
 </script>
 <script>
+  var anger = <%- JSON.stringify(anger) %>;
+  var disgust = <%- JSON.stringify(disgust) %>;
+  var fear = <%- JSON.stringify(fear) %>;
   var joy = <%- JSON.stringify(joy) %>;
+  var sadness = <%- JSON.stringify(sadness) %>;
+  var confident = <%- JSON.stringify(confident) %>;
+  var tentative = <%- JSON.stringify(tentative) %>;
+  var agreeableness = <%- JSON.stringify(agreeableness) %>;
+  var autofill = true;
+  var text = "Hello my name is Annie and I love you."
+  $(document).ready(function(){
+    $('#message').value=text;
+  })
+    
+  
+
+
+  console.log(anger, disgust, fear, joy, sadness, confident, tentative, agreeableness);
       var fill = 0;
       var update = setInterval(function() {
         fill += 1;
