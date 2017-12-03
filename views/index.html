@@ -1,20 +1,45 @@
 <html>
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 <link rel="stylesheet" type="text/css" href="stylesheets/style.css" />
 <img src="empathee.png" alt="logo" style="margin-left:300px;width:656px;height:192px;">
+<br><br><br>
+
 <form action="/" method="post">
 
   <textarea class= "center" id="message" name="message" type="text" value="" placeholder="Enter text to analyze feelings..."></textarea><br/>
-  <input class= "center-button" type="submit" value="Analyze"/>
+  <input class= "center-button" onclick="seewaiting()" type="submit" value="Analyze"/>
 </form>
-<p style="margin-left:550px; margin-top:50px; font-size: 20px"; id = "hide"><big> emotions detected...</big> </p>
-<script>$("hide").hide();</script>
-<div id="happy"></div>
-<div id="sadness"></div>
-<div id="anger"></div>
-<div id="disgust"></div>
-<div id="fear"></div>
+<p id="phide"><big> emotions detected...</big> </p>
 
+<div class="container">
+  <div class="row">
+
+<div class="col-md-2 col-md-offset-1"> <div id="happy"> </div> <p id="p1" class-"ptext"></p><p id="label1" class-"ptext">Happiness</p> </div>
+<div class="col-md-2"><div id="sadness"></div>
+<p id="p2" class-"ptext"></p><p id="label2" class-"ptext">Sadness</p>
+</div>
+<div class="col-md-2"><div id="anger"></div>
+<p id="p3" class-"ptext"></p><p id="label3" class-"ptext">Anger</p>
+</div>
+<div class="col-md-2"><div id="disgust"></div>
+<p id="p4" class-"ptext"></p><p id="label4" class-"ptext">Disgust</p>
+</div>
+<div class="col-md-2"><div id="fear"></div>
+<p id="p5" class-"ptext"></p><p id="label5" class-"ptext">Fear</p>
+</div>
+</div>
+</div>
+<br>
+<p><h1 style= "margin-left: 200; margin-bottom:50px;"> Learn more about these feelings... </h1></p>
+<p id="very_happy" style= "margin-left: 200; margin-top:50px; margin-right: 120;"><big>I detect <b><font color = #FAD849>joy</font></b>! People show joy differently, sometimes by smiling widely, or standing up very tall.  When they are joyful, people can feel outgoing and excited. </big> </p>
+
+<p id="very_sad" style= "margin-left: 200; margin-top:50px;margin-right: 120;"><big>I detect <b><font color = #6E99F8>sadness</font></b>. Someone who is sad may be frowning or even crying. Some sad people prefer to be alone, while some seek out others for comfort. Everyone is sad sometimes, and it's important to know that sad feelings are only temporary.</big></p>
+
+<p id="very_angry" style= "margin-left: 200; margin-top:50px; margin-right: 120;"><big>I detect <b><font color = #EE7198>anger</font></b>. Some people feel angry when they they're out of control or overwhelmed.  Angry feelings are hot, tense and uncomfortable.  If you feel angry, ask yourself why and think of ways to calm down, like taking slow, deep breaths.</big> </p>
+
+<p id="very_disgusted" style= "margin-left: 200; margin-top:50px;margin-right: 120;"><big>I detect <b><font color = #B1FB7B>disgust</font></b>. Disgust is a strong dislike tirggered by a bad experience.  It is an unpleasant feeling, but usually only lasts a short time.</big> </p>
+
+<p id="very_scared" style= "margin-left: 200; margin-top:50px;margin-right: 120; "><big>I detect <b><font color = #B792C8>fear</font></b>. Someone may have fear if they are worried about something that happened or will happen soon. They may be scared of things that they can see but also things that they can't. If you get scared, a good idea is to talk to someone you trust about why you feel this way.</big> </p>
 <script
   src="https://code.jquery.com/jquery-3.2.1.slim.js"
   integrity="sha256-tA8y0XqiwnpwmOIl3SGAcFl2RvxHjA8qp0+1uCGmRmg="
@@ -22,21 +47,41 @@
 
 
 <script>  
+  var showgraph = <%- JSON.stringify(show) %>;
+  if(showgraph){
+    $(".ptext").show();
+    $("#phide").hide();
+  }
+  else{
+    $("p").hide();
+  }
+
+  $("#very_happy").hide();
+  $("#very_sad").hide();
+  $("#very_angry").hide();
+  $("#very_disgusted").hide();
+  $("#very_scared").hide();
 
   var joy = <%- JSON.stringify(joy) %>;
   var sadness = <%- JSON.stringify(sadness) %>;
   var anger = <%- JSON.stringify(anger) %>;
   var disgust = <%- JSON.stringify(disgust) %>;
   var fear = <%- JSON.stringify(fear) %>;
-
   var fill_happy = 0;
   var fill_sadness = 0;
   var fill_anger = 0;
   var fill_disgust = 0;
   var fill_fear = 0;
-
-  $("p").show(1000);
-
+    document.getElementById("p1").innerHTML=Math.floor(joy*100)+"%";
+    document.getElementById("p2").innerHTML=Math.floor(sadness*100)+"%";
+    document.getElementById("p3").innerHTML=Math.floor(anger*100)+"%";
+    document.getElementById("p4").innerHTML=Math.floor(disgust*100)+"%";
+    document.getElementById("p5").innerHTML=Math.floor(fear*100)+"%";
+  
+  function seewaiting(){
+    $("#phide").show();
+    console.log('success');
+  }
     var update = setInterval(function() {
       fill_happy += 1;
       if (fill_happy <= joy*200) {
@@ -47,6 +92,9 @@
       }
     }, 10);
 
+    if(joy>.5)
+      $("#very_happy").show();
+
     var update2 = setInterval(function() {
       fill_sadness += 1;
       if (fill_sadness <= sadness*200) {
@@ -56,6 +104,8 @@
         clearInterval(update2);        
       }
     }, 10);
+    if(sadness>.5)
+      $("#very_sad").show();
 
     var update3 = setInterval(function() {
       fill_anger += 1;
@@ -66,6 +116,8 @@
         clearInterval(update3);        
       }
     }, 10);
+    if(anger>.5)
+      $("#very_angry").show();
 
     var update4 = setInterval(function() {
       fill_disgust += 1;
@@ -76,6 +128,8 @@
         clearInterval(update4);        
       }
     }, 10);
+    if(disgust>.5)
+      $("#very_disgusted").show();
 
     var update5 = setInterval(function() {
       fill_fear += 1;
@@ -86,10 +140,9 @@
         clearInterval(update5);        
       }
     }, 10);
+    if(fear>.5)
+      $("#very_scared").show();
 
-
-    console.log(joy, sadness, anger, disgust, fear);
-
+    console.log(fill_happy,joy, sadness, anger, disgust, fear);
 </script>
 </html>
-
